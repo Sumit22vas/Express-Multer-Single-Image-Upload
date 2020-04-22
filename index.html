@@ -55,6 +55,10 @@
             uploadForm.addEventListener('submit',getFile);
 
             function getFile(e){
+                if(image.files.length === 0) {
+                    showAlert('danger','Error','No file Selected');
+                    return;
+                }
                 e.preventDefault();
                 var formData = new FormData();
                 formData.append('image',image.files[0]);
@@ -70,6 +74,7 @@
                         <img src="images/${data.image}" class="img-fluid" alt="Responsive image">
                         `);
                     }
+                  $('#image).val('');
                 })
                 .catch((err)=> console.log(err));
             }
